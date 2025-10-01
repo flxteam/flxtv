@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 try {
                     window.history.replaceState(
                         { search: keyword }, 
-                        `搜索: ${keyword} - LibreTV`, 
+                        `搜索: ${keyword} - FLXTV`, 
                         window.location.href
                     );
                 } catch (e) {
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
             try {
                 window.history.replaceState(
                     { search: searchQuery }, 
-                    `搜索: ${searchQuery} - LibreTV`, 
+                    `搜索: ${searchQuery} - FLXTV`, 
                     `/s=${encodeURIComponent(searchQuery)}`
                 );
             } catch (e) {
@@ -77,4 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }, 300);
     }
+
+    // 初始化豆瓣功能
+    initDouban();
 });

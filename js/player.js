@@ -126,7 +126,7 @@ function initializePageContent() {
     const savedPosition = parseInt(urlParams.get('position') || '0'); // 获取保存的播放位置
     // 解决历史记录问题：检查URL是否是player.html开头的链接
     // 如果是，说明这是历史记录重定向，需要解析真实的视频URL
-    if (videoUrl && videoUrl.includes('player.html')) {
+    if (videoUrl && videoUrl.includes('watch.html')) {
         try {
             // 尝试从嵌套URL中提取真实的视频链接
             const nestedUrlParams = new URLSearchParams(videoUrl.split('?')[1]);
@@ -218,7 +218,7 @@ function initializePageContent() {
     }
 
     // 设置页面标题
-    document.title = currentVideoTitle + ' - LibreTV播放器';
+    document.title = currentVideoTitle + ' - FLXTV播放器';
     document.getElementById('videoTitle').textContent = currentVideoTitle;
 
     // 初始化播放器

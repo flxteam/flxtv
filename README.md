@@ -10,7 +10,7 @@
 
 FLXTV 是一个轻量级、免费的在线视频搜索与观看平台，提供来自多个视频源的内容搜索与播放服务。无需注册，即开即用，支持多种设备访问。项目结合了前端技术和后端代理功能，可部署在支持服务端功能的各类网站托管服务上。
 
-本项目由 FELIX 基于 [bestK/tv](https://github.com/bestK/tv) 进行重构与增强，衍生自 [flxteam/tv](https://github.com/flxteam/tv)。
+本项目由 FELIX 基于 [hdd99009/tv](https://github.com/hdd99009/tv) 进行重构与增强，衍生自 [flxteam/flxtv](https://github.com/flxteam/flxtv)。
 
 <details>
   <summary>点击查看项目截图</summary>
@@ -25,12 +25,7 @@ FLXTV 是一个轻量级、免费的在线视频搜索与观看平台，提供�
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/flxteam/flxtv)  
 [![Deploy to Render](https://render.com/deploy?repo=https://github.com/flxteam/flxtv)
 
-## 🚨 重要声明
 
-- 本项目仅供学习和个人使用，为避免版权纠纷，必须设置PASSWORD环境变量
-- 请勿将部署的实例用于商业用途或公开服务
-- 如因公开分享导致的任何法律问题，用户需自行承担责任
-- 项目开发者不对用户的使用行为承担任何法律责任
 
 ## ⚠️ 同步与升级
 
@@ -120,9 +115,7 @@ npm run dev
 
 ## 🔧 自定义配置
 
-### 密码保护
 
-**重要提示**: 为确保安全，所有部署都必须设置 PASSWORD 环境变量，否则用户将看到设置密码的提示。
 
 
 ### API兼容性

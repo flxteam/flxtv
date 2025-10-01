@@ -108,52 +108,7 @@ function initAPICheckboxes() {
     checkAdultAPIsSelected();
 }
 
-// 添加成人API列表
-function addAdultAPI() {
-    // 仅在隐藏设置为false时添加成人API组
-    if (!HIDE_BUILTIN_ADULT_APIS && (localStorage.getItem('yellowFilterEnabled') === 'false')) {
-        const container = document.getElementById('apiCheckboxes');
 
-        // 添加成人API组标题
-        const adultdiv = document.createElement('div');
-        adultdiv.id = 'adultdiv';
-        adultdiv.className = 'grid grid-cols-2 gap-2';
-        const adultTitle = document.createElement('div');
-        adultTitle.className = 'api-group-title adult';
-        adultTitle.innerHTML = `黄色资源采集站 <span class="adult-warning">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-            </svg>
-        </span>`;
-        adultdiv.appendChild(adultTitle);
-
-        // 创建成人API源的复选框
-        Object.keys(API_SITES).forEach(apiKey => {
-            const api = API_SITES[apiKey];
-            if (!api.adult) return; // 仅添加成人内容API
-
-            const checked = selectedAPIs.includes(apiKey);
-
-            const checkbox = document.createElement('div');
-            checkbox.className = 'flex items-center';
-            checkbox.innerHTML = `
-                <input type="checkbox" id="api_${apiKey}" 
-                       class="form-checkbox h-3 w-3 text-blue-600 bg-[#222] border border-[#333] api-adult" 
-                       ${checked ? 'checked' : ''} 
-                       data-api="${apiKey}">
-                <label for="api_${apiKey}" class="ml-1 text-xs text-pink-400 truncate">${api.name}</label>
-            `;
-            adultdiv.appendChild(checkbox);
-
-            // 添加事件监听器
-            checkbox.querySelector('input').addEventListener('change', function () {
-                updateSelectedAPIs();
-                checkAdultAPIsSelected();
-            });
-        });
-        container.appendChild(adultdiv);
-    }
-}
 
 // 检查是否有成人API被选中
 function checkAdultAPIsSelected() {
@@ -605,23 +560,7 @@ function getCustomApiInfo(customApiIndex) {
 
 // 搜索功能 - 修改为支持多选API和多页结果
 async function search() {
-    // 强化的密码保护校验 - 防止绕过
-    try {
-        if (window.ensurePasswordProtection) {
-            window.ensurePasswordProtection();
-        } else {
-            // 兼容性检查
-            if (window.isPasswordProtected && window.isPasswordVerified) {
-                if (window.isPasswordProtected() && !window.isPasswordVerified()) {
-                    showPasswordModal && showPasswordModal();
-                    return;
-                }
-            }
-        }
-    } catch (error) {
-        console.warn('Password protection check failed:', error.message);
-        return;
-    }
+
     const query = document.getElementById('searchInput').value.trim();
 
     if (!query) {
@@ -721,11 +660,7 @@ async function search() {
         // 处理搜索结果过滤：如果启用了黄色内容过滤，则过滤掉分类含有敏感内容的项目
         const yellowFilterEnabled = localStorage.getItem('yellowFilterEnabled') === 'true';
         if (yellowFilterEnabled) {
-            const banned = ['伦理片', '福利', '里番动漫', '门事件', '萝莉少女', '制服诱惑', '国产传媒', 'cosplay', '黑丝诱惑', '无码', '日本无码', '有码', '日本有码', 'SWAG', '网红主播', '色情片', '同性片', '福利视频', '福利片'];
-            allResults = allResults.filter(item => {
-                const typeName = item.type_name || '';
-                return !banned.some(keyword => typeName.includes(keyword));
-            });
+            // allResults = allResults.filter(item => !isBanned(item.type_name));
         }
 
         // 添加XSS保护，使用textContent和属性转义

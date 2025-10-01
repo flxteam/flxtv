@@ -1,10 +1,10 @@
-// 获取当前URL的参数，并将它们传递给player.html
+// 获取当前URL的参数，并将它们传递给watch.html
 window.onload = function() {
     // 获取当前URL的查询参数
     const currentParams = new URLSearchParams(window.location.search);
     
     // 创建player.html的URL对象
-    const playerUrlObj = new URL("player.html", window.location.origin);
+    const playerUrlObj = new URL("watch.html", window.location.origin);
     
     // 更新状态文本
     const statusElement = document.getElementById('redirect-status');
@@ -73,6 +73,12 @@ window.onload = function() {
     }
     
     // 获取最终的URL字符串
+    // 将视频URL也添加到参数中
+    const videoUrl = currentParams.get('url');
+    if (videoUrl) {
+        playerUrlObj.searchParams.set('url', videoUrl);
+    }
+
     const finalPlayerUrl = playerUrlObj.toString();
     
     // 更新手动重定向链接
