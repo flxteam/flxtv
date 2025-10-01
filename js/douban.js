@@ -109,7 +109,7 @@ function initDouban() {
     
     // 初始加载热门内容
     if (localStorage.getItem('doubanEnabled') === 'true') {
-        renderRecommend(doubanCurrentTag, doubanPageSize, doubanPageStart);
+        // renderRecommend(doubanCurrentTag, doubanPageSize, doubanPageStart);
     }
 }
 
@@ -127,7 +127,7 @@ function updateDoubanVisibility() {
         doubanArea.classList.remove('hidden');
         // 如果豆瓣结果为空，重新加载
         if (document.getElementById('douban-results').children.length === 0) {
-            renderRecommend(doubanCurrentTag, doubanPageSize, doubanPageStart);
+            // renderRecommend(doubanCurrentTag, doubanPageSize, doubanPageStart);
         }
     } else {
         doubanArea.classList.add('hidden');
